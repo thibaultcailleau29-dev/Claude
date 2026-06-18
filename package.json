@@ -7,9 +7,11 @@
     "render": "npx remotion render src/index.ts AIAppReel --output out/AIAppReel.mp4"
   },
   "dependencies": {
-    "remotion": "^4.0.0",
     "@remotion/cli": "^4.0.0",
-    "@remotion/player": "^4.0.0"
+    "@remotion/player": "^4.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "remotion": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
