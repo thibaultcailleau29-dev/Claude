@@ -20,7 +20,7 @@ export const Scene3: React.FC = () => {
       {/* Background Ken Burns */}
       <AbsoluteFill style={{ transform: `scale(${scale})`, transformOrigin: 'center center' }}>
         <Img
-          src={staticFile('scene3_huitres.png')}
+          src={staticFile('scene3_huitres.webp')}
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         />
       </AbsoluteFill>

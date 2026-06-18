@@ -125,7 +125,7 @@ export const Scene4: React.FC = () => {
       <div style={{ position: 'absolute', bottom: 60, left: 60 }}>
         <Img
           src={staticFile('logo_cave_.png')}
-          style={{ width: 220, mixBlendMode: 'screen', opacity: logoOpacity }}
+          style={{ width: 220, mixBlendMode: 'multiply', opacity: logoOpacity }}
         />
       </div>
     </AbsoluteFill>

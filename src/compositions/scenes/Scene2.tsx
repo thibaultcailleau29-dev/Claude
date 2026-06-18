@@ -99,7 +99,7 @@ export const Scene2: React.FC = () => {
           src={staticFile('logo_cave_.png')}
           style={{
             width: 280,
-            mixBlendMode: 'screen',
+            mixBlendMode: 'multiply',
             opacity: logoOpacity,
           }}
         />
