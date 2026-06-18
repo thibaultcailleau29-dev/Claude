@@ -8,7 +8,18 @@ export const Scene3: React.FC = () => {
   const frame = useCurrentFrame();
   const local = frame - START;
 
-  const scale = interpolate(local, [0, 120], [1.0, 1.06], {
+  // Ken Burns plus dynamique + pan opposé
+  const scale = interpolate(local, [0, 120], [1.05, 1.18], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const panX = interpolate(local, [0, 120], [20, -20], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  // Flash d'entrée
+  const flashOpacity = interpolate(local, [0, 5], [0.6, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -17,8 +28,13 @@ export const Scene3: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: '#000' }}>
-      {/* Background Ken Burns */}
-      <AbsoluteFill style={{ transform: `scale(${scale})`, transformOrigin: 'center center' }}>
+      {/* Background Ken Burns + pan */}
+      <AbsoluteFill
+        style={{
+          transform: `scale(${scale}) translateX(${panX}px)`,
+          transformOrigin: 'center center',
+        }}
+      >
         <Img
           src={staticFile('scene3_huitres.webp')}
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
@@ -28,18 +44,23 @@ export const Scene3: React.FC = () => {
       {/* Gradient overlay — tiers bas */}
       <AbsoluteFill
         style={{
-          background: 'linear-gradient(to bottom, transparent 58%, rgba(0,0,0,0.45) 100%)',
+          background: 'linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.65) 100%)',
         }}
       />
 
-      {/* Texte mot par mot */}
-      <AbsoluteFill
-        style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 180 }}
-      >
+      {/* Flash */}
+      <AbsoluteFill style={{ backgroundColor: `rgba(255,255,255,${flashOpacity})` }} />
+
+      {/* Mots un par un — rapide */}
+      <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 160 }}>
         <div style={{ textAlign: 'center', padding: '0 60px' }}>
           {words.map((word, i) => {
-            const delay = i * 12;
-            const opacity = interpolate(local, [delay, delay + 12], [0, 1], {
+            const delay = i * 8;
+            const opacity = interpolate(local, [delay, delay + 8], [0, 1], {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+            });
+            const scale = interpolate(local, [delay, delay + 10], [0.8, 1.0], {
               extrapolateLeft: 'clamp',
               extrapolateRight: 'clamp',
             });
@@ -48,14 +69,16 @@ export const Scene3: React.FC = () => {
                 key={i}
                 style={{
                   fontFamily,
-                  fontSize: 68,
+                  fontSize: 76,
                   fontWeight: 700,
                   color: '#FFFFFF',
                   letterSpacing: '0.15em',
-                  textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+                  textShadow: '0 4px 20px rgba(0,0,0,0.6)',
                   opacity,
-                  marginRight: i < words.length - 1 ? '0.35em' : 0,
-                  display: 'inline',
+                  marginRight: i < words.length - 1 ? '0.3em' : 0,
+                  display: 'inline-block',
+                  transform: `scale(${scale})`,
+                  transformOrigin: 'bottom center',
                 }}
               >
                 {word}
