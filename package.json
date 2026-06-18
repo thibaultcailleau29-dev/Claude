@@ -7,7 +7,9 @@
     "render": "npx remotion render src/index.ts AIAppReel --output out/AIAppReel.mp4"
   },
   "dependencies": {
+    "@fontsource/playfair-display": "^5.2.8",
     "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "^4.0.481",
     "@remotion/player": "^4.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
