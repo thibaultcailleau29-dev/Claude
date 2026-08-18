@@ -1,4 +1,4 @@
-import { Composition } from "@remotion/core";
+import { Composition } from "remotion";
 import { Reel } from "./Reel";
 
 export const Root = () => {
