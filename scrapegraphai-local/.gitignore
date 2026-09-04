@@ -1,0 +1,6 @@
+# Artefacts lourds / environnements — non versionnés
+official-repo/
+.venv/
+__pycache__/
+*.pyc
+output/
